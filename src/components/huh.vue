@@ -1,24 +1,19 @@
 <template>
     <div class="container">
-        <h1>Em gì ơi.......</h1>
-        <h1>Làm người yêu anh không ?</h1>
-        <h1 v-if="cancelButton == true">Đồng ý đi</h1>
-        <h1 v-if="cancelButton == true">Đừng không đồng ý chứ</h1>
-        <h1 v-if="acceptButton == true">Yes.....</h1>
-        <h1 v-if="acceptButton == true">Tuyệt vời</h1>
-        <h1 v-if="acceptButton == true">Yêu em hẹ hẹ hẹ</h1>
+        <h1>Gửi mọi người.......</h1>
+        <h1>Có một món quà nhỏ dành cho mọi người nè</h1>
+        <h1 v-if="acceptButton == true">Chúc mừng ngày Phụ nữ Việt Nam 20/10 💐</h1>
+        <h1 v-if="acceptButton == true">Chúc mọi người luôn xinh đẹp, vui vẻ và hạnh phúc</h1>
+        <h1 v-if="acceptButton == true">Mãi rạng rỡ và được yêu thương thật nhiều ❤️</h1>
         <div class="application">
             <div class="background" v-if="huh">
                 <div class="img">
-                    <img :src="`${process.env.BASE_URL}assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png`" alt="Random Image">
+                    <img :src="imgSrc" alt="Random Image">
                 </div>
             </div>
         </div>
         <form>
-            <button @click.prevent="cancelRandom" type="button" id="button-cancel" class="btn-cancel">
-                Không đồng ý
-            </button>
-            <button type="submit" id="button-submit" @click.prevent="huhuhuhuhuhu">Đồng ý</button>
+            <button type="submit" id="button-submit" @click.prevent="huhuhuhuhuhu">Ấn đi</button>
         </form>
 
     </div>
@@ -30,39 +25,17 @@ export default {
     data() {
         return {
             huh: false,
-            cancelButton: false,
             acceptButton: false,
-            // pathImg: require(''),
+            imgSrc: require('@/assets/hinh-anh-20-10-27-1.jpg'),
         }
     },
     mounted() {
-        document.title = 'Ê em ơi';
+        document.title = 'Chúc mừng 20/10';
     },
     methods: {
-        cancelRandom() {
-            this.huh = false;
-            this.cancelButton = true;
-            const button = document.getElementById('button-cancel');
-            // Đảm bảo button có position absolute và z-index cao
-            button.style.position = 'fixed';
-            button.style.zIndex = '9999';
-            // Giữ nguyên tất cả CSS styling khác
-            button.style.padding = '30px 80px';
-            button.style.fontSize = '16px';
-            button.style.color = 'white';
-            button.style.backgroundColor = '#007BFF';
-            button.style.border = 'none';
-            button.style.borderRadius = '5px';
-            button.style.cursor = 'pointer';
-            button.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            button.style.transition = 'box-shadow 0.3s ease';
-
-            const maxLeft = window.innerWidth - 200;
-            const maxTop = window.innerHeight - 100;
-            button.style.left = Math.random() * maxLeft + 'px';
-            button.style.top = Math.random() * maxTop + 'px';
-        },
         huhuhuhuhuhu() {
+            // Chỉ chạy vòng tạo ảnh một lần, tránh ấn nhiều lần làm ảnh ra dồn dập
+            if (this.acceptButton) return;
             this.huh = true;
             this.acceptButton = true;
             this.createRandomPopup();
@@ -73,7 +46,7 @@ export default {
 
             // Tạo phần tử img và thêm vào
             const image = document.createElement('img');
-            image.src = process.env.BASE_URL + 'assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png';  // Đảm bảo đường dẫn đúng
+            image.src = this.imgSrc;
             image.alt = 'Random Image';  // Thêm alt text cho hình ảnh
             popup.appendChild(image);  // Thêm img vào popup
 
@@ -94,7 +67,7 @@ export default {
             // Tạo phần tử mới mỗi 1 giây mà không ẩn phần tử trước đó
             setTimeout(() => {
                 this.createRandomPopup();
-            }, 200);
+            }, 1000);
         }
     }
 }
