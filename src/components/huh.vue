@@ -10,7 +10,7 @@
         <div class="application">
             <div class="background" v-if="huh">
                 <div class="img">
-                    <img :src="`${process.env.VUE_APP_BASE_URL}assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png`" alt="Random Image">
+                    <img :src="`${process.env.BASE_URL}assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png`" alt="Random Image">
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@ export default {
 
             // Tạo phần tử img và thêm vào
             const image = document.createElement('img');
-            image.src = process.env.VUE_APP_BASE_URL + 'assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png';  // Đảm bảo đường dẫn đúng
+            image.src = process.env.BASE_URL + 'assets/image/_Pngtree_cute_red_heart_hand_drawn_20390865-removebg-preview.png';  // Đảm bảo đường dẫn đúng
             image.alt = 'Random Image';  // Thêm alt text cho hình ảnh
             popup.appendChild(image);  // Thêm img vào popup
 
